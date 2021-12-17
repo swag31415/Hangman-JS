@@ -1,5 +1,5 @@
 {
   "name": "Hangman",
   "desc": "My first project when I learned nim, now re-written in javascript!",
-  "image": "TODO add image"
+  "image": "hangman.png"
 }

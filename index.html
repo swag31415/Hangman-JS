@@ -2,8 +2,7 @@
 
 <head>
   <title>Hangman</title>
-  <!-- TODO Add logo -->
-  <!-- <link rel="icon" href="logo.png" type="image/x-icon"> -->
+  <link rel="icon" href="hangman.png" type="image/x-icon">
   <!-- Our Styles -->
   <link rel="stylesheet" href="css/main.css">
   <insert-html link="https://swag31415.github.io/Portfolio/inserts/head.html"></insert-html>
@@ -12,11 +11,232 @@
 <body>
   <insert-html link="https://swag31415.github.io/Portfolio/inserts/menu.html"></insert-html>
   <main class="container">
-    <!-- TODO Add body -->
+    <h1>hangman</h1>
+    <div id="start_dialog" class="row">
+      <div class="input-field col s12 m6">
+        <input id="word" class="validate" type="text" pattern="[A-Za-z ]+">
+        <label for="word">Word(s)</label>
+        <span class="helper-text" data-error="Only letters and spaces allowed"></span>
+      </div>
+      <div class="input-field col">
+        <button id="start" class="btn green">Start</button>
+      </div>
+      <div class="input-field col">
+        <button id="rand_start" class="btn">Random Word</button>
+      </div>
+    </div>
+
+    <div id="game" style="display: none;">
+      <div id="stages">
+<pre>
+ ___________.._______
+| ._________)))______|
+| | / /     |_|
+| |/ /      |_|
+| | /       |_|
+| |/        |_|
+| |         |_|
+| |        // \\
+| |       ||   ||
+| |        \\_//
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+""""""""""|__  _____|"""|
+|"|"""""""\ \       '"|"|
+| |        \ \        | |
+: :         \ \       : :
+. .          `'       . .</pre>
+<pre>
+ ___________.._______
+| .__________))______|
+| | / /      ||
+| |/ /       ||
+| | /        ||.-''.
+| |/         |/  _  \
+| |          ||  `/,|
+| |          (\\`_.'
+| |           `--'
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+""""""""""|__  _____|"""|
+|"|"""""""\ \       '"|"|
+| |        \ \        | |
+: :         \ \       : :
+. .          `'       . .</pre>
+<pre>
+ ___________.._______
+| .__________))______|
+| | / /      ||
+| |/ /       ||
+| | /        ||.-''.
+| |/         |/  _  \
+| |          ||  `/,|
+| |          (\\`_.'
+| |         .-`--'.
+| |         \ . . /
+| |          |   |
+| |          | . |
+| |          | __|
+| |
+| |
+| |
+| |
+| |
+""""""""""|__  _____|"""|
+|"|"""""""\ \       '"|"|
+| |        \ \        | |
+: :         \ \       : :
+. .          `'       . .</pre>
+<pre>
+ ___________.._______
+| .__________))______|
+| | / /      ||
+| |/ /       ||
+| | /        ||.-''.
+| |/         |/  _  \
+| |          ||  `/,|
+| |          (\\`_.'
+| |         .-`--'.
+| |        /Y . . /
+| |       // |   |
+| |      //  | . |
+| |     ')   | __|
+| |
+| |
+| |
+| |
+| |
+""""""""""|__  _____|"""|
+|"|"""""""\ \       '"|"|
+| |        \ \        | |
+: :         \ \       : :
+. .          `'       . .</pre>
+<pre>
+ ___________.._______
+| .__________))______|
+| | / /      ||
+| |/ /       ||
+| | /        ||.-''.
+| |/         |/  _  \
+| |          ||  `/,|
+| |          (\\`_.'
+| |         .-`--'.
+| |        /Y . . Y\
+| |       // |   | \\
+| |      //  | . |  \\
+| |     ')   | __|   (`
+| |
+| |
+| |
+| |
+| |
+""""""""""|__  _____|"""|
+|"|"""""""\ \       '"|"|
+| |        \ \        | |
+: :         \ \       : :
+. .          `'       . .</pre>
+<pre>
+ ___________.._______
+| .__________))______|
+| | / /      ||
+| |/ /       ||
+| | /        ||.-''.
+| |/         |/  _  \
+| |          ||  `/,|
+| |          (\\`_.'
+| |         .-`--'.
+| |        /Y . . Y\
+| |       // |   | \\
+| |      //  | . |  \\
+| |     ')   | __|   (`
+| |          ||
+| |          ||
+| |          ||
+| |          ||
+| |         / |
+""""""""""|_`-'_____|"""|
+|"|"""""""\ \       '"|"|
+| |        \ \        | |
+: :         \ \       : :
+. .          `'       . .    </pre>
+<pre>
+ ___________.._______
+| .__________))______|
+| | / /      ||
+| |/ /       ||
+| | /        ||.-''.
+| |/         |/  _  \
+| |   You    ||  `/,|
+| |  Failed  (\\`_.'
+| |         .-`--'.
+| |        /Y . . Y\
+| |       // |   | \\
+| |      //  | . |  \\
+| |     ')   |   |   (`
+| |          ||'||
+| |          || ||
+| |          || ||
+| |          || ||
+| |         / | | \
+""""""""""|_`-' `-' |"""|
+|"|"""""""\ \       '"|"|
+| |        \ \        | |
+: :         \ \       : :
+. .          `'       . .</pre>
+      </div>
+      <p class="flow-text">
+        <samp id="guess"></samp>
+      </p>
+      <div id="letters" class="row">
+        <button class="btn row letter red">a</button>
+        <button class="btn row letter oramge">b</button>
+        <button class="btn row letter green">c</button>
+        <button class="btn row letter teal">d</button>
+        <button class="btn row letter cyan">e</button>
+        <button class="btn row letter blue">f</button>
+        <button class="btn row letter indigo">g</button>
+        <button class="btn row letter purple">h</button>
+        <button class="btn row letter red">i</button>
+        <button class="btn row letter oramge">j</button>
+        <button class="btn row letter green">k</button>
+        <button class="btn row letter teal">l</button>
+        <button class="btn row letter cyan">m</button>
+        <button class="btn row letter blue">n</button>
+        <button class="btn row letter indigo">o</button>
+        <button class="btn row letter purple">p</button>
+        <button class="btn row letter red">q</button>
+        <button class="btn row letter oramge">r</button>
+        <button class="btn row letter green">s</button>
+        <button class="btn row letter teal">t</button>
+        <button class="btn row letter cyan">u</button>
+        <button class="btn row letter blue">v</button>
+        <button class="btn row letter indigo">w</button>
+        <button class="btn row letter purple">x</button>
+        <button class="btn row letter red">y</button>
+        <button class="btn row letter oramge">z</button>
+        <a href="/Hangman-JS" class="btn red right">Reset</a>
+      </div>
+    </div>
   </main>
   <insert-html link="https://swag31415.github.io/Portfolio/inserts/foot.html"></insert-html>
   <!-- HTML Inserts -->
   <script src="https://swag31415.github.io/Portfolio/js/html_inserts.js"></script>
+  <!-- Jquery Slim -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
   <!-- Our Scripts -->
   <script src="js/main.js"></script>
 </body>
